@@ -11,6 +11,7 @@ Java solutions to the weekly practice problems, organized by week.
 | Week 5 | Arrays & Methods (Category C) | Hackathon Score Curve Booster, Duplicate Team Name Finder, Top-3 Podium Finder, Hackathon Seating Grid Optimizer, Placement Drive Shortlisting & Ranking Engine |
 | Week 6 | Classes and Objects Revision (Category C) | Student Placement Record Management, Hostel Mess Wallet Management, Course Credit Management, Library ID Card Management, Student and College Information Management |
 | Week 7 | Encapsulation (Category C) | The Piggy Bank, The Quiz Scorecard, The Nickname Tag, The Locker Code, The Attendance Sheet |
+| Week 8 | Inheritance & Polymorphism (Category C) | Payment System Fee Calculation, Library Item Due Date Calculator, Delivery Fee Calculator, Examination Question Grader, Public Transport Fare Calculator |
 
 Each `.java` file is self-contained with a `main` method that demonstrates the
 sample input/output given in the problem statement. All files compile and run
