@@ -1,0 +1,18 @@
+# Week 9 — Part C Concept Questions
+
+## Question 1 — Abstraction with a real-life example
+Abstraction means exposing only what an object does while hiding how it does it, so that users work with a simple interface and not the internal complexity. A good example is an **ATM cash withdrawal**. The user sees a screen with options such as "Withdraw", "Check Balance" and "Enter PIN", and simply receives cash. What is hidden is the PIN encryption, the network call to the bank's server, the balance check, the transaction logging, and the mechanism that counts and dispenses notes. Hiding these lets the user perform the task without knowing any of it, and lets the bank change the internals without changing how customers use the machine.
+
+## Question 2 — Abstraction vs encapsulation
+Abstraction is about **design-level simplification**: deciding which behaviour to show and which to hide (the "what"). Encapsulation is about **data protection**: bundling data and methods together and restricting direct access to the data with access modifiers (the "how it is guarded"). Abstraction answers "what can I do with this object?", while encapsulation answers "how is its internal state kept safe?". Within one class they work together: a `BankAccount` class exposes `deposit()` and `withdraw()` (abstraction; callers don't know how balances are updated) while the `balance` field is `private` and changed only through those validated methods (encapsulation). Together they reduce complexity for the user and prevent invalid state.
+
+## Question 3 — Constructors in abstract classes
+An abstract class cannot be instantiated directly because it may be incomplete, but it can still hold **state** (fields such as `owner` in `Plot` or `name` in `Staff`) that all subclasses share. A constructor lets the abstract class initialise that common state in one place and enforce validation. The constructor is executed **when a subclass object is created**: the subclass constructor calls `super(...)` (explicitly or implicitly) as its first step, so the abstract class constructor runs before the subclass constructor body. It is never used to create an object of the abstract class itself.
+
+## Question 4 — Why abstract methods cannot be private, static or final
+- **private**: an abstract method exists to be overridden by subclasses, but private methods are not visible to subclasses and so can never be overridden. It would be impossible to implement.
+- **static**: static methods belong to the class and are resolved at compile time, not through runtime polymorphism, so they cannot be overridden. An abstract (bodyless) static method could never be given an implementation or be called meaningfully.
+- **final**: `final` forbids overriding, whereas `abstract` *requires* overriding. The two are contradictory, so the compiler rejects the combination.
+
+## Question 5 — The diamond problem
+The diamond problem occurs in multiple inheritance when class `D` inherits from `B` and `C`, which both inherit from `A`. If `B` and `C` each override a method or hold their own copy of a field from `A`, `D` cannot tell which version it should inherit, creating ambiguity. Java avoids this for classes by allowing a class to **extend only one class**, so there is only one inheritance path for state and implementation. A class may implement many interfaces because interfaces carry no instance state and (traditionally) no implementation, so there is nothing conflicting to inherit. Even with Java 8 default methods, if two interfaces supply the same default method, the compiler forces the class to override it and resolve the conflict explicitly (e.g. `A.super.method()`).
